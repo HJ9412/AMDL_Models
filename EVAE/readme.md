@@ -6,4 +6,4 @@ between the original(x1) and the reconstructed(x2), as it is the case in the dou
 
 (Maybe I have needed to mix layers once more to make parameters truly intermingled and depended.)
 
-I hope this design solves the concern that the original evaluator would have been biased to the data from reconstruction.
+I hope this design solves a possible concern that the original evaluator would have been biased to the data from reconstruction.
