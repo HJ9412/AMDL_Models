@@ -6,3 +6,5 @@ while the presented design intentionally makes it difficult for the machine to d
 between the original(x1) and the reconstructed(x2), as it is the case in the double slit experiment.
 
 (Maybe I have needed to mix layers once more to make parameters truly intermingled and depended.)
+
+I hope this design solves the concern that the original evaluator would have been biased to the data from reconstruction.
