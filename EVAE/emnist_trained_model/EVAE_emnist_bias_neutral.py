@@ -299,7 +299,7 @@ if __name__ == '__main__':
             value_origin = values.sum().item()
             axes[0].imshow(image_origin[0].permute(1, 2, 0).cpu())
             axes[0].set_title(f'0th: {value_origin:.1f}')
-            axes[0].axis('off')  # Turn off axis numbers
+            axes[0].axis('off')
 
             recon_x = image_origin
             count = 0
@@ -313,20 +313,20 @@ if __name__ == '__main__':
                     value = value_image
                     axes[1].imshow(image.permute(1, 2, 0).cpu())
                     axes[1].set_title(f'1st: {value:.1f}')
-                    axes[1].axis('off')  # Turn off axis numbers
+                    axes[1].axis('off')
                 if value_image >= value and value_image > value_origin:
                     count += 1
                     print(f"{i}, {value_image}, {value}")
                     value = value_image
                     axes[2].imshow(image.permute(1, 2, 0).cpu())
                     axes[2].set_title(f'{i}th: {value:.1f}')
-                    axes[2].axis('off')  # Turn off axis numbers
+                    axes[2].axis('off')
                     if count == 1:
                         break
             if count == 0:
                 axes[2].imshow(image_origin[0].permute(1, 2, 0).cpu())
                 axes[2].set_title(f'{0}th: {value_origin:.1f}')
-                axes[2].axis('off')  # Turn off axis numbers
+                axes[2].axis('off')
             plt.show()
             plt.close()
     else:
