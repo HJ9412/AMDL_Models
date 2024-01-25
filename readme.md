@@ -7,4 +7,6 @@ You can download and run the model through the *.ipynb files provided in the AMD
 Various models will be uploaded afterword.
 
 
-Citations : The particular generative model is based on this popular work: D. P. Kingma & M. Welling, "Auto-encoding Variational Bayes", https://doi.org/10.48550/arXiv.1312.6114
+Citations :
+
+[1] The particular generative model is based on this popular work: D. P. Kingma & M. Welling, "Auto-encoding Variational Bayes", https://doi.org/10.48550/arXiv.1312.6114
