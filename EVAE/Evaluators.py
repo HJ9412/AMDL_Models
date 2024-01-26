@@ -121,5 +121,5 @@ class Evaluator5(nn.Module):    # Non-biased Feature Extractor 2
         sB = F.relu(self.fc_state(hB))
         sC = F.relu(self.fc_state(hC))
         sD = F.relu(self.fc_state(hD))
-        values = F.relu(self.fc_eval(torch.concat((sA, sB, sC, sD), dim=1)))
+        values = F.relu(self.fc_eval(torch.concat((sA, sB, sC, sD), dim=1)))    # Any idea would get me helped a lot!
         return values
