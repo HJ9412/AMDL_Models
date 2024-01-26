@@ -132,8 +132,8 @@ class Evaluator6(nn.Module):    # Non-biased Feature Extraction and then Evaluat
         # Layers
         self.fc_x0h = nn.Linear(data_dim, hidden_dim1)
         self.fc_x1h = nn.Linear(data_dim, hidden_dim1)
-        self.fc_h0 = nn.Linear(hidden_dim1, hidden_dim2)
-        self.fc_h1 = nn.Linear(hidden_dim1, hidden_dim2)
+        self.fc_hs0 = nn.Linear(hidden_dim1, hidden_dim2)
+        self.fc_hs1 = nn.Linear(hidden_dim1, hidden_dim2)
         self.fc_eval = nn.Linear(hidden_dim2, value_dim)
 
     def forward(self, x0, x1):
@@ -141,12 +141,12 @@ class Evaluator6(nn.Module):    # Non-biased Feature Extraction and then Evaluat
         x1 = torch.flatten(x1, start_dim = 1)
         h0 = F.relu(self.fc_x0h(x0))
         h1 = F.relu(self.fc_x1h(x1))
-        h00 = self.fc_h0(h0)
-        h10 = self.fc_h0(h1)
-        h01 = self.fc_h1(h0)
-        h11 = self.fc_h1(h1)
-        sA = F.relu(h00 + h11)
-        sB = F.relu(h01 + h10)
+        s00 = self.fc_hs0(h0)
+        s10 = self.fc_hs0(h1)
+        s01 = self.fc_hs1(h0)
+        s11 = self.fc_hs1(h1)
+        sA = F.relu(s00 + s11)
+        sB = F.relu(s01 + s10)
         vA = F.relu(self.fc_eval(sA))
         vB = F.relu(self.fc_eval(sB))
         values = vA + vB
