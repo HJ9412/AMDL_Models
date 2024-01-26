@@ -12,7 +12,7 @@ The advantage: eliminating bias
 The disadvantage: lost unsupervisedness(as it become self-supervised)
 
 
-The file Evaluators.py contains types of evaluators that can be used at hands.
+The file Evaluators.py contains types of evaluator that can be used at hands.
 
 Here is ChatGPT(GPT-4)'s opinion on the list of evaluators.
 
