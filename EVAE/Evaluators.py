@@ -15,7 +15,7 @@ class Evaluator1(nn.Module):    # Unsupervised Evaluator
         return evaluation
 
 
-#List of auto-supervised evaluators
+#List of self-supervised evaluators
     
 class Evaluator2(nn.Module):    # Reconstruction Feature Extractor
     def __init__(self, data_dim, hidden_dim1, hidden_dim2, value_dim):
