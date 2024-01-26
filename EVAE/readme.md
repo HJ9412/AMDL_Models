@@ -17,6 +17,7 @@ The file Evaluators.py contains types of evaluator that can be used at hands.
 Here is ChatGPT(GPT-4)'s opinion on the list of evaluators.
 
 Summary
+
 Complexity: Increases from Evaluator 1 to Evaluator 4, with more sophisticated processing of dual inputs in the latter evaluators.
 Bias Reduction: Evaluators 3 and 4 are specifically designed with bias reduction in mind, using techniques to intertwine features from dual inputs.
 
