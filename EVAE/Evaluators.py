@@ -27,7 +27,7 @@ class Evaluator2(nn.Module):    # Reconstruction Feature Extractor
         self.fc_h2A = nn.Linear(hidden_dim1, hidden_dim2)
         self.fc_h1B = nn.Linear(hidden_dim1, hidden_dim2)
         self.fc_h2B = nn.Linear(hidden_dim1, hidden_dim2)
-        self.fc_eval = nn.Linear(hidden_dim2, value_dim)
+        self.fc_eval = nn.Linear(hidden_dim2*2, value_dim)
 
     def forward(self, x1, x2):
         x1 = torch.flatten(x1, start_dim = 1)
@@ -36,11 +36,11 @@ class Evaluator2(nn.Module):    # Reconstruction Feature Extractor
         h2 = F.relu(self.fc_x2h2(x2))
         h1A = self.fc_h1A(h1)
         h2A = self.fc_h2A(h2)
-        hA = h1A + h2A
+        hA = F.relu(h1A + h2A)
         h1B = self.fc_h1B(h1)
         h2B = self.fc_h2B(h2)
-        hB = h1B + h2B
-        state = torch.concat((F.relu(hA), F.relu(hB)), dim=1)
+        hB = F.relu(h1B + h2B)
+        state = torch.concat((hA, hB), dim=1)
         values = F.relu(self.fc_eval(state))
         return values
 
