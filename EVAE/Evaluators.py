@@ -102,7 +102,7 @@ class Evaluator5(nn.Module):    # Non-biased Feature Extractor 2
         self.fc_h0 = nn.Linear(hidden_dim1, hidden_dim1)
         self.fc_h1 = nn.Linear(hidden_dim1, hidden_dim1)
         self.fc_state = nn.Linear(hidden_dim1, hidden_dim2)
-        self.fc_eval = nn.Linear(hidden_dim2*4, value_dim)
+        self.fc_eval = nn.Linear(hidden_dim2*, value_dim)
 
     def forward(self, x0, x1):
         x0 = torch.flatten(x0, start_dim = 1)
@@ -112,14 +112,15 @@ class Evaluator5(nn.Module):    # Non-biased Feature Extractor 2
         h00 = self.fc_h0(h0)
         h10 = self.fc_h0(h1)
         h01 = self.fc_h1(h0)
-        h11 = self.fc_h1(h1)      # hij = fc_hj(hi). We want to erase i from it.
+        h11 = self.fc_h1(h1)        # hij = fc_hj(hi). We want to erase i from it.
         hA = F.relu(h00 + h11)
         hB = F.relu(h10 + h01)
-        hC = F.relu(h00 - h11)    # {h00, h10, h01, h11} to {h00+h11, h10+h01, h00-h11, h10-h01}
-        hD = F.relu(h10 - h01)    # is a transformation of four vectors into non-factorable combinations.
+        # hC = F.relu(h00 - h11)    # {h00, h10, h01, h11} to {h00+h11, h10+h01, h00-h11, h10-h01}
+        # hD = F.relu(h10 - h01)    # is a transformation of four vectors into non-factorable combinations.
+                                    # It seems that adding hC and hD gives a freedom for the two 'fc_hj' to change its sign.
         sA = F.relu(self.fc_state(hA))
         sB = F.relu(self.fc_state(hB))
-        sC = F.relu(self.fc_state(hC))
-        sD = F.relu(self.fc_state(hD))
-        values = F.relu(self.fc_eval(torch.concat((sA, sB, sC, sD), dim=1)))    # Any idea would get me helped a lot!
+        # sC = F.relu(self.fc_state(hC))
+        # sD = F.relu(self.fc_state(hD))
+        values = F.relu(self.fc_eval(torch.concat((sA, sB), dim=1)))    # Any idea would get me helped a lot!
         return values
