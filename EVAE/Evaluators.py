@@ -75,7 +75,7 @@ class Evaluator4(nn.Module):    # Non-biased Feature Extractor
         self.fc_h1B = nn.Linear(hidden_dim1, hidden_dim1)
         self.fc_h2B = nn.Linear(hidden_dim1, hidden_dim1)
         self.fc_state = nn.Linear(hidden_dim1, hidden_dim2)
-        self.fc_eval = nn.Linear(hidden_dim2, value_dim)
+        self.fc_eval = nn.Linear(hidden_dim2*2, value_dim)
 
     def forward(self, x1, x2):
         x1 = torch.flatten(x1, start_dim = 1)
