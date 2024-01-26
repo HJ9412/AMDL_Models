@@ -114,7 +114,7 @@ class Evaluator5(nn.Module):    # Non-biased Feature Extractor 2
         hA = F.relu(h1A + h2A)
         h1B = self.fc_hB(h1)
         h2B = self.fc_hB(h2)
-        hB = F.relu(h1B + h2B)
+        hB = F.relu(h1B - h2B)
         sA = F.relu(self.fc_state(hA))
         sB = F.relu(self.fc_state(hB))
         values = F.relu(self.fc_eval(torch.concat((sA,sB), dim=1)))
