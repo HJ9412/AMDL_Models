@@ -92,3 +92,30 @@ class Evaluator4(nn.Module):    # Non-biased Feature Extractor
         sB = F.relu(self.fc_state(hB))
         values = F.relu(self.fc_eval(torch.concat((sA,sB), dim=1)))
         return values
+
+class Evaluator5(nn.Module):    # Non-biased Feature Extractor 2
+    def __init__(self, data_dim, hidden_dim1, hidden_dim2, value_dim):
+        super(Evaluator, self).__init__()
+        # Layers
+        self.fc_x1h1 = nn.Linear(data_dim, hidden_dim1)
+        self.fc_x2h2 = nn.Linear(data_dim, hidden_dim1)
+        self.fc_hA = nn.Linear(hidden_dim1, hidden_dim1)
+        self.fc_hB = nn.Linear(hidden_dim1, hidden_dim1)
+        self.fc_state = nn.Linear(hidden_dim1, hidden_dim2)
+        self.fc_eval = nn.Linear(hidden_dim2*2, value_dim)
+
+    def forward(self, x1, x2):
+        x1 = torch.flatten(x1, start_dim = 1)
+        x2 = torch.flatten(x2, start_dim = 1)
+        h1 = F.relu(self.fc_x1h1(x1))
+        h2 = F.relu(self.fc_x2h2(x2))
+        h1A = self.fc_hA(h1)
+        h2A = self.fc_hA(h2)
+        hA = F.relu(h1A + h2A)
+        h1B = self.fc_hB(h1)
+        h2B = self.fc_hB(h2)
+        hB = F.relu(h1B + h2B)
+        sA = F.relu(self.fc_state(hA))
+        sB = F.relu(self.fc_state(hB))
+        values = F.relu(self.fc_eval(torch.concat((sA,sB), dim=1)))
+        return values
