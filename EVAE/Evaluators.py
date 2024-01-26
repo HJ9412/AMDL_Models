@@ -100,7 +100,7 @@ class Evaluator5(nn.Module):    # Non-biased Feature Extractor 2
         self.fc_x0h0 = nn.Linear(data_dim, hidden_dim1)
         self.fc_x1h1 = nn.Linear(data_dim, hidden_dim1)
         self.fc_h0 = nn.Linear(hidden_dim1, hidden_dim1)
-        self.fc_h0 = nn.Linear(hidden_dim1, hidden_dim1)
+        self.fc_h1 = nn.Linear(hidden_dim1, hidden_dim1)
         self.fc_state = nn.Linear(hidden_dim1, hidden_dim2)
         self.fc_eval = nn.Linear(hidden_dim2*4, value_dim)
 
