@@ -59,8 +59,8 @@ class Evaluator3(nn.Module):    # Bias Eraser
         x2 = torch.flatten(x2, start_dim = 1)
         h1 = F.relu(self.fc_x1h1(x1))               # Layers x1h1, x2h2 makes the evaluation a noncommutative operation
         h2 = F.relu(self.fc_x2h2(x2))
-        sA = F.relu(self.fc_hA(h1)+self.fc_sA(h2))  # Applying common layers to h1 and h2 produces intermingled states sA and sB
-        sB = F.relu(self.fc_sB(h1)+self.fc_sB(h2))
+        sA = F.relu(self.fc_sA(h1)+self.fc_sB(h2))  # Applying different layers to h1 and h2 produces intermingled states sA and sB
+        sB = F.relu(self.fc_sA(h2)+self.fc_sB(h1))
         values = F.relu(self.fc_eval(sA+sB))        # The last layer even intermingles the two states sA and sB to make it completely forget its pathway
         return values
 
