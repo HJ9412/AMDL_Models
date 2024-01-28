@@ -1,3 +1,5 @@
+2024/01/28. I'm sorry but I just noticed and fixed the problematic "do_reparam=False" to "True" in all the testing loops of *.ipynb files. It had been set because I once intened to compare autoencoding ability of the modified VAE. but I forgot it and copied and pasted without intention afterwards.
+
 In the mnist_model_bias_eraser, there are files(model, code, loader) adapting the dependent learning technique to another version of evaluator.
 
 Even though this evaluator takes two inputs(x1 for original and x2 for reconstructed),
